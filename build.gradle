@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+ext {
+    dropwizardVersion = '4.0.8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+application {
+    mainClass = 'com.example.dropwizardcleanarchitecture.DropwizardCleanArchitectureApplication'
+}
+
+dependencies {
+    implementation "io.dropwizard:dropwizard-core:$dropwizardVersion"
+
+    testImplementation "io.dropwizard:dropwizard-testing:$dropwizardVersion"
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
